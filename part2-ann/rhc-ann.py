@@ -64,7 +64,7 @@ def plotaccuracy(x,y):
         y_test_accuracy = accuracy_score(y_test, y_test_pred)
         stop = datetime.datetime.now()
         accuracy.append(y_test_accuracy*100)
-        times.append(((stop - start).microseconds)/ 1000)
+        times.append(((stop - start).total_seconds()))
     
 
     _, axes = plt.subplots(1, 2, figsize=(20, 5))
@@ -84,7 +84,7 @@ def plotaccuracy(x,y):
     axes[1].legend(loc="best")
 
     axes[1].set_xlabel("Iterations")
-    axes[1].set_ylabel("Time in Milliseconds")
+    axes[1].set_ylabel("Time in Seconds")
 
     plt.show()
 

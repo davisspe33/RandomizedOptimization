@@ -16,22 +16,22 @@ max_iters=1000
 start = datetime.datetime.now()
 best_statea, best_featurea,curvea= mlrose.random_hill_climb(problem, max_attempts=100, max_iters=max_iters, restarts=0, init_state=None, curve=True, random_state=None)
 stop = datetime.datetime.now()
-print('Execution Time (milli) random_hill_climb: ',((stop - start).microseconds)/1000)
+print('Execution Time random_hill_climb: ',((stop - start).total_seconds()))
 
 start = datetime.datetime.now()
 best_stateb, best_featureb,curveb = mlrose.genetic_alg(problem, pop_size=200, mutation_prob=0.1, max_attempts=10, max_iters=max_iters, curve=True, random_state=None)
 stop = datetime.datetime.now()
-print('Execution Time (milli) genetic_alg: ',((stop - start).microseconds)/1000)
+print('Execution Time genetic_alg: ',((stop - start).total_seconds()))
 
 start = datetime.datetime.now()
 best_statec, best_featurec,curvec = mlrose.simulated_annealing(problem, max_attempts = 10, max_iters = max_iters, curve=True, init_state = None, random_state = 1)
 stop = datetime.datetime.now()
-print('Execution Time (milli) simulated_annealing: ',((stop - start).microseconds)/1000)
+print('Execution Time simulated_annealing: ',((stop - start).total_seconds()))
 
 start = datetime.datetime.now()
 best_stated, best_featured,curved= mlrose.mimic(problem, pop_size=200, keep_pct=0.2, max_attempts=10, max_iters=max_iters, curve=True, random_state=None, fast_mimic=True)
 stop = datetime.datetime.now()
-print('Execution Time (milli) mimic: ',((stop - start).microseconds)/1000)
+print('Execution Time mimic: ',((stop - start).total_seconds()))
 
 param_rangea=np.linspace(1, 1000,curvea.shape[0])
 param_rangeb=np.linspace(1, 1000,curveb.shape[0])

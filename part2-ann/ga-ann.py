@@ -19,7 +19,7 @@ import datetime
 def main():
     x, y = transformData()
     neuralNet(x,y)
-    #plotaccuracy(x,y)
+    plotaccuracy(x,y)
 
 def transformData(): 
     data = pd.read_csv('Cancerdata.csv') 
@@ -53,7 +53,7 @@ def plotaccuracy(x,y):
     times=[]
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = 0.3, random_state = 3)
 
-    for z in range(1,1001,100):
+    for z in range(1,1001,50):
         clf = mlrose.NeuralNetwork(hidden_nodes = [], activation = 'relu', \
                                     algorithm = 'genetic_alg', max_iters = z, \
                                     bias = True, is_classifier = True, learning_rate = 0.0001, \
@@ -67,7 +67,7 @@ def plotaccuracy(x,y):
         y_test_accuracy = accuracy_score(y_test, y_test_pred)
         stop = datetime.datetime.now()
         accuracy.append(y_test_accuracy*100)
-        times.append(((stop - start).microseconds)/ 1000 )
+        times.append(((stop - start).total_seconds()))
     
     _, axes = plt.subplots(1, 2, figsize=(20, 5))
     axes[0].set_xlabel("Training examples")
@@ -83,7 +83,7 @@ def plotaccuracy(x,y):
     axes[1].plot(param_range, times, label="genetic_alg",color="blue", lw=2)
     axes[1].legend(loc="best")
     axes[1].set_xlabel("Iterations")
-    axes[1].set_ylabel("Time in Milliseconds")
+    axes[1].set_ylabel("Time in Seconds")
 
     plt.show()
 
